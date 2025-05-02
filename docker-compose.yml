@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # Backend Spring Boot
+  backend:
+    build: ./back-end-main               # Chemin vers le Dockerfile du backend
+    ports:
+      - "8080:8080"                # Exposer le port 8080 pour le backend
+    depends_on:
+      - db
+      - keycloak
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: rahma123
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8181
+
+  # Frontend Angular
+  frontend:
+    build: ./front-end              # Chemin vers le Dockerfile du frontend
+    ports:
+      - "4200:80"                  # Exposer le port 4200 pour le frontend
+    depends_on:
+      - backend
+
+  # Base de données PostgreSQL
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: rahma123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"                # Exposer le port 5432 pour la base de données
+
+  # Keycloak (gestion de l'authentification)
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.0
+    command: start-dev
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: postgres
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: rahma123
+    ports:
+      - "8181:8080"                # Exposer le port 8180 pour Keycloak
+    depends_on:
+      - db
+
+                
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8082:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - clinic-management
+
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - clinic-management
+
+volumes:
+  postgres_data: 
+  jenkins_home:
+  sonarqube_data:
+  sonarqube_extensions:
+
+networks:
+  clinic-management:
+    driver: bridge

@@ -1,0 +1,75 @@
+spring:
+    application:
+        name: cleanArchitecture-demo
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: rahma123
+        driver-class-name: org.postgresql.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+
+    servlet:
+        multipart:
+            max-file-size: 2MB
+            max-request-size: 2MB
+
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8181/realms/clinique-realm
+                    jwk-set-uri: http://localhost:8181/realms/clinique-realm/protocol/openid-connect/certs
+                    audience: backend
+
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
+
+server:
+    port: 8080
+    servlet:
+        context-path: /api
+    error:
+        include-message: always
+        include-binding-errors: always
+
+file:
+    upload-dir: uploads
+    server-url: http://localhost:8080
+
+keycloak:
+    realm: clinique-realm
+    auth-server-url: http://localhost:8181
+    resource: backend-clinique
+    credentials:
+        secret: ""  # Laissez vide si client est public
+    bearer-only: true
+    ssl-required: none
+    use-resource-role-mappings: true
+    cors: true
+    cors-max-age: 3600
+    cors-allowed-methods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+
+
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+                web: DEBUG
+            hibernate: INFO
+            keycloak: DEBUG
+        com:
+            yourpackage: DEBUG
