@@ -1,8 +1,12 @@
 pipeline {
   agent any
 
+  tools {
+    maven 'Maven 3.9.9'
+  }
+
   environment {
-    SONAR_TOKEN = credentials('sonar-token') // Nom exact de la credential créée dans Jenkins
+    SONAR_TOKEN = credentials('sonar-token')
   }
 
   stages {
@@ -14,14 +18,14 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh './mvnw clean install'
+        sh 'mvn clean install'
       }
     }
 
     stage('SonarQube Analysis') {
       steps {
-        withSonarQubeEnv('SonarQube') { // Le nom doit correspondre à ton serveur configuré dans Jenkins
-          sh './mvnw sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
+        withSonarQubeEnv('SonarQube') {
+          sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
         }
       }
     }
