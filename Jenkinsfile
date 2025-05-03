@@ -18,7 +18,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        dir('backend/clinic') {
+        dir('back-end-main') {
           sh 'mvn clean install'
         }
       }
@@ -26,7 +26,7 @@ pipeline {
 
     stage('SonarQube Analysis') {
       steps {
-        dir('backend/clinic') {
+        dir('back-end-main') {
           withSonarQubeEnv('SonarQube') {
             sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
           }
