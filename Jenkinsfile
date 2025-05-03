@@ -1,18 +1,14 @@
 pipeline {
   agent any
 
-  tools {
-    maven 'Maven 3.9.9'
-  }
-
   environment {
-    SONAR_TOKEN = credentials('sonar-token') // tu dois créer cette "credential"
+    SONAR_TOKEN = credentials('sonar-token') // Nom exact de la credential créée dans Jenkins
   }
 
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/moo-tezWayup/Final-repo.git'
+        git branch: 'main', url: 'https://github.com/moo-tezWayup/Final-repo.git'
       }
     }
 
@@ -24,8 +20,8 @@ pipeline {
 
     stage('SonarQube Analysis') {
       steps {
-        withSonarQubeEnv('SonarQube') {
-            sh './mvnw sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
+        withSonarQubeEnv('SonarQube') { // Le nom doit correspondre à ton serveur configuré dans Jenkins
+          sh './mvnw sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
         }
       }
     }
