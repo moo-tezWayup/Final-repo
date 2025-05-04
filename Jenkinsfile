@@ -8,24 +8,32 @@ pipeline {
   environment {
     SONAR_TOKEN = credentials('sonar-token')
   }
-stages {
-        stage('Clone') {
-            steps {
-                sh '/usr/bin/git --version'
-                sh '/usr/bin/git clone https://github.com/moo-tezWayup/Final-repo.git'
-            }
-        }
-    }
+
   stages {
-    stage('Checkout') {
+    stage('Git Version Check') {
       steps {
-        git branch: 'main', url: 'https://github.com/moo-tezWayup/Final-repo.git'
+        sh '/usr/bin/git --version'
       }
     }
 
-    stage('Build') {
+    stage('Clone Repository') {
       steps {
-        dir('back-end-main') {
+        sh 'rm -rf Final-repo' // Clean any existing repo
+        sh '/usr/bin/git clone https://github.com/moo-tezWayup/Final-repo.git'
+      }
+    }
+
+    stage('Checkout Main Branch') {
+      steps {
+        dir('Final-repo') {
+          git branch: 'main', url: 'https://github.com/moo-tezWayup/Final-repo.git'
+        }
+      }
+    }
+
+    stage('Build Backend') {
+      steps {
+        dir('Final-repo/back-end-main') {
           sh 'mvn clean install'
         }
       }
@@ -33,7 +41,7 @@ stages {
 
     stage('SonarQube Analysis') {
       steps {
-        dir('back-end-main') {
+        dir('Final-repo/back-end-main') {
           withSonarQubeEnv('SonarQube') {
             sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
           }
