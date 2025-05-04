@@ -2,7 +2,6 @@ pipeline {
   agent any
 
   tools {
-     git 'Git 2.39.5'
     maven 'Maven 3.9.9'
   }
 
