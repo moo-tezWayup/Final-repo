@@ -9,7 +9,14 @@ pipeline {
   environment {
     SONAR_TOKEN = credentials('sonar-token')
   }
-
+stages {
+        stage('Clone') {
+            steps {
+                sh '/usr/bin/git --version'
+                sh '/usr/bin/git clone https://github.com/moo-tezWayup/Final-repo.git'
+            }
+        }
+    }
   stages {
     stage('Checkout') {
       steps {
