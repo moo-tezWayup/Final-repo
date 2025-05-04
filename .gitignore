@@ -1,0 +1,24 @@
+# Node.js
+node_modules/
+dist/
+.env
+
+# Angular
+.angular/cache/
+.angular/config.json
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Java / Maven
+target/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
