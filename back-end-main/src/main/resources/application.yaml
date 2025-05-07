@@ -38,7 +38,7 @@ spring:
             matching-strategy: ant_path_matcher
 
 server:
-    port: 8080
+    port: 8081
     servlet:
         context-path: /api
     error:
@@ -47,7 +47,7 @@ server:
 
 file:
     upload-dir: uploads
-    server-url: http://localhost:8080
+    server-url: http://localhost:8081
 
 keycloak:
     realm: clinique-realm
