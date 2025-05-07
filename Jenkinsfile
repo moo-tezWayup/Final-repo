@@ -41,13 +41,17 @@ pipeline {
     }
 
     stage('SonarQube Analysis') {
-      steps {
-        dir('Final-repo/back-end-main') {
-          withSonarQubeEnv('SonarQube') {
-            sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
-          }
+  steps {
+    dir('Final-repo/back-end-main') {
+      withSonarQubeEnv('SonarQube') {
+        withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+          sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
         }
       }
     }
   }
 }
+
+    }
+  }
+

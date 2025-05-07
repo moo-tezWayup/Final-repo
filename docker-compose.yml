@@ -5,7 +5,7 @@ services:
   backend:
     build: ./back-end-main               # Chemin vers le Dockerfile du backend
     ports:
-      - "8080:8080"                # Exposer le port 8080 pour le backend
+      - "8080:8080"                      # Exposer le port 8080 pour le backend
     depends_on:
       - db
       - keycloak
@@ -17,11 +17,17 @@ services:
 
   # Frontend Angular
   frontend:
-    build: ./front-end              # Chemin vers le Dockerfile du frontend
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    volumes:
+      - ./front-end:/app
+      - /app/node_modules
     ports:
-      - "4200:80"                  # Exposer le port 4200 pour le frontend
+      - "4200:4200"
     depends_on:
       - backend
+      - keycloak
 
   # Base de données PostgreSQL
   db:
@@ -52,8 +58,6 @@ services:
       - "8181:8080"                # Exposer le port 8180 pour Keycloak
     depends_on:
       - db
-
-                
 
   jenkins:
     image: jenkins/jenkins:lts
