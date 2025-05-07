@@ -5,7 +5,7 @@ services:
   backend:
     build: ./back-end-main               # Chemin vers le Dockerfile du backend
     ports:
-      - "8080:8080"                      # Exposer le port 8080 pour le backend
+      - "8081:8080"                      # Exposer le port 8080 pour le backend
     depends_on:
       - db
       - keycloak
