@@ -35,7 +35,7 @@ pipeline {
     stage('Build Backend') {
       steps {
         dir('Final-repo/back-end-main') {
-          sh 'mvn clean install'
+           sh 'mvn clean install -Dspring.profiles.active=test'
         }
       }
     }
