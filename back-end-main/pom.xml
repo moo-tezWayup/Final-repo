@@ -113,7 +113,7 @@
         <!-- TEST RESOURCES fix -->
         <testResources>
             <testResource>
-                <directory>src/test/java/resources</directory>
+                <directory>src/test/resources</directory>
                 <includes>
                     <include>**/*.yml</include>
                     <include>**/*.yaml</include>
