@@ -1,15 +1,12 @@
 package fr.wayUp.cleanArchitecture_demo.web.controller;
 import fr.wayUp.cleanArchitecture_demo.application.service.FileUploadService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Files;
+
 import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 @RestController
 @RequestMapping("/static")
 @RequiredArgsConstructor

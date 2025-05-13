@@ -1,6 +1,5 @@
 package fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity;
 
-import fr.wayUp.cleanArchitecture_demo.domain.model.Staff;
 import jakarta.persistence.*;
 import lombok.*;
 

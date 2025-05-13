@@ -2,7 +2,6 @@ package fr.wayUp.cleanArchitecture_demo.web.controller;
 
 
 import fr.wayUp.cleanArchitecture_demo.application.service.MedicationService;
-import fr.wayUp.cleanArchitecture_demo.domain.model.Medication;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.MedicationMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.MedicationDTO;
 import jakarta.validation.Valid;

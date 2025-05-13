@@ -3,7 +3,6 @@ package fr.wayUp.cleanArchitecture_demo.application.service;
 import fr.wayUp.cleanArchitecture_demo.application.usecase.serviceStaff.*;
 import fr.wayUp.cleanArchitecture_demo.domain.model.ServiceStaff;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

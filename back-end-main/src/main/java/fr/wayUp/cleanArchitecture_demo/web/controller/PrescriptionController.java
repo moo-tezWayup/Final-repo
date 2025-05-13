@@ -1,7 +1,6 @@
 package fr.wayUp.cleanArchitecture_demo.web.controller;
 
 import fr.wayUp.cleanArchitecture_demo.application.service.PrescriptionService;
-import fr.wayUp.cleanArchitecture_demo.domain.model.Prescription;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.PrescriptionMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.PrescriptionDTO;
 import jakarta.transaction.Transactional;

@@ -1,6 +1,5 @@
 package fr.wayUp.cleanArchitecture_demo.domain.repository;
 import fr.wayUp.cleanArchitecture_demo.domain.model.PrescriptionDetail;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,8 +3,6 @@ package fr.wayUp.cleanArchitecture_demo.web.controller;
 import fr.wayUp.cleanArchitecture_demo.application.service.ClinicService;
 import fr.wayUp.cleanArchitecture_demo.application.service.FileUploadService;
 import fr.wayUp.cleanArchitecture_demo.domain.model.Clinic;
-import fr.wayUp.cleanArchitecture_demo.domain.model.Clinic;
-import fr.wayUp.cleanArchitecture_demo.domain.model.Staff;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.ClinicMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.ClinicDTO;
 import jakarta.transaction.Transactional;

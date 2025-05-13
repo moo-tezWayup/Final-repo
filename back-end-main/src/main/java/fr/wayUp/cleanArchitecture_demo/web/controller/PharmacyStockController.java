@@ -2,7 +2,6 @@ package fr.wayUp.cleanArchitecture_demo.web.controller;
 
 
 import fr.wayUp.cleanArchitecture_demo.application.service.PharmacyStockService;
-import fr.wayUp.cleanArchitecture_demo.domain.model.PharmacyStock;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.PharmacyStockMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.PharmacyStockDTO;
 import jakarta.transaction.Transactional;

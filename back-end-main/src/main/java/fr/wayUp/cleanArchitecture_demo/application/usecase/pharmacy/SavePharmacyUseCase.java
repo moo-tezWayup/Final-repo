@@ -2,7 +2,6 @@ package fr.wayUp.cleanArchitecture_demo.application.usecase.pharmacy;
 
 import fr.wayUp.cleanArchitecture_demo.domain.model.Pharmacy;
 import fr.wayUp.cleanArchitecture_demo.domain.repository.PharmacyRepository;
-import fr.wayUp.cleanArchitecture_demo.web.DTO.PharmacyDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

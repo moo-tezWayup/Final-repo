@@ -6,8 +6,6 @@ import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.ClinicE
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.ClinicMapper;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jpa.ClinicJpaRepository;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.ClinicDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 

@@ -6,7 +6,6 @@ import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.Service
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.ServiceMapper;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jpa.ServiceJpaRepository;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.ServiceDTO;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

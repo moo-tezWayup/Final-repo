@@ -1,7 +1,6 @@
 package fr.wayUp.cleanArchitecture_demo.web.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import java.time.LocalDateTime;
