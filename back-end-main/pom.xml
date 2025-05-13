@@ -110,17 +110,6 @@
             </plugin>
         </plugins>
 
-        <!-- TEST RESOURCES fix -->
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.yaml</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </testResource>
-        </testResources>
     </build>
 
 </project>
