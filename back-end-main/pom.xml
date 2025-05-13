@@ -94,7 +94,15 @@
 	</dependencies>
 
 	<build>
-		<plugins>
+	        
+     <testResources>
+              <testResource>
+             <directory>src/test/java/resources</directory>
+             </testResource>
+     </testResources>
+            
+
+	 <plugins>
 			<!-- Compiler Plugin  -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
