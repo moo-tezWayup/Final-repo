@@ -51,7 +51,7 @@ file:
 
 keycloak:
     realm: clinique-realm
-    auth-server-url: http://localhost:8181
+    auth-server-url: http://localhost:8180
     resource: backend-clinique
     credentials:
         secret: ""  # Laissez vide si client est public

@@ -13,7 +13,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: rahma123
-      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8181
+      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8180
 
   # Frontend Angular
   frontend:
@@ -55,7 +55,7 @@ services:
       KC_DB_USERNAME: postgres
       KC_DB_PASSWORD: rahma123
     ports:
-      - "8181:8080"                # Exposer le port 8180 pour Keycloak
+      - "8180:8080"                # Exposer le port 8180 pour Keycloak
     depends_on:
       - db
 

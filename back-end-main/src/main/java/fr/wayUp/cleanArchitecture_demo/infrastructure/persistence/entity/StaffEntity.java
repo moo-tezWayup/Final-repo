@@ -54,6 +54,9 @@ public class StaffEntity {
     private StaffEntity secretaire;
 
     // Si ce staff est secrétaire → ses médecins
+    /**
+     *
+     */
     @OneToMany(mappedBy = "secretaire", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StaffEntity> medecins = new ArrayList<>();
 
