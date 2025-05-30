@@ -1,5 +1,7 @@
 package fr.wayUp.cleanArchitecture_demo.web.DTO;
 
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

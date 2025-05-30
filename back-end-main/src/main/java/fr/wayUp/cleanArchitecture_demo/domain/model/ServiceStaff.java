@@ -1,6 +1,9 @@
 package fr.wayUp.cleanArchitecture_demo.domain.model;
 
-
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDateTime;

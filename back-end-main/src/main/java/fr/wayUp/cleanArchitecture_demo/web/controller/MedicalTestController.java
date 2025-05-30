@@ -1,6 +1,7 @@
 package fr.wayUp.cleanArchitecture_demo.web.controller;
 
 import fr.wayUp.cleanArchitecture_demo.application.service.MedicalTestService;
+import fr.wayUp.cleanArchitecture_demo.domain.model.MedicalTest;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.MedicalTestMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.MedicalTestDTO;
 import jakarta.validation.Valid;

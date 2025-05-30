@@ -29,7 +29,7 @@ public class StaffEntity {
     @Column(nullable = false, unique = true)
     private String cin;
 
-    private String grade; 
+    private String grade; // "MEDECIN" ou "SECRETAIRE"
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -54,15 +54,8 @@ public class StaffEntity {
     private StaffEntity secretaire;
 
     // Si ce staff est secrétaire → ses médecins
-    /**
-     *
-     */
     @OneToMany(mappedBy = "secretaire", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StaffEntity> medecins = new ArrayList<>();
-
-    public StaffEntity(List<StaffEntity> medecins) {
-      this.medecins = medecins;
-    }
 
     // vérifier si le secrétaire a atteint la limite
     public boolean canAddMoreMedecins() {

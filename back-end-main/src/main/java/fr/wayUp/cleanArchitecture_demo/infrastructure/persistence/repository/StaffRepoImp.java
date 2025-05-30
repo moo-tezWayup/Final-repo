@@ -1,8 +1,10 @@
 package fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository;
 import fr.wayUp.cleanArchitecture_demo.domain.model.Staff;
 import fr.wayUp.cleanArchitecture_demo.domain.repository.StaffRepository;
+import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.StaffEntity;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jpa.StaffJpaRepository;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.StaffDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import  fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.StaffMapper;
 
@@ -61,9 +63,6 @@ public class StaffRepoImp  implements StaffRepository {
         }
         if (staffDTO.getGrade() != null) {
             existingStaff.setGrade(staffDTO.getGrade());
-        }
-        if (staffDTO.getSpecialty() != null) {
-            existingStaff.setSpecialty(staffDTO.getSpecialty());
         }
         if (staffDTO.getEmail() != null) {
             existingStaff.setEmail(staffDTO.getEmail());

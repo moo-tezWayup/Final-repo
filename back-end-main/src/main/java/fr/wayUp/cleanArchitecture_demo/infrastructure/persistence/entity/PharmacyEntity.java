@@ -3,6 +3,7 @@ package fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 
 @Table(name="pharmacy")
 @Entity

@@ -2,8 +2,10 @@ package fr.wayUp.cleanArchitecture_demo.web.controller;
 
 import fr.wayUp.cleanArchitecture_demo.application.service.FileUploadService;
 import fr.wayUp.cleanArchitecture_demo.application.service.ServiceService;
+import fr.wayUp.cleanArchitecture_demo.domain.model.Pharmacy;
 import fr.wayUp.cleanArchitecture_demo.domain.model.Service;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.ServiceMapper;
+import fr.wayUp.cleanArchitecture_demo.web.DTO.ClinicDTO;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.ServiceDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

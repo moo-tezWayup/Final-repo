@@ -1,6 +1,6 @@
 package fr.wayUp.cleanArchitecture_demo.web.DTO;
 
-
+import fr.wayUp.cleanArchitecture_demo.domain.model.Staff;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

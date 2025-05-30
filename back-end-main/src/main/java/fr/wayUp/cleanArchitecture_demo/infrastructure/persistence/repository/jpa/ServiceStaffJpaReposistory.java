@@ -3,7 +3,7 @@ package fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jp
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.ServiceStaffEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

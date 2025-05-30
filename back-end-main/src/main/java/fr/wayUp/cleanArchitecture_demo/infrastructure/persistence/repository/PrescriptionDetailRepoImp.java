@@ -1,8 +1,13 @@
 package fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository;
+import fr.wayUp.cleanArchitecture_demo.domain.model.MedicalTest;
 import fr.wayUp.cleanArchitecture_demo.domain.model.PrescriptionDetail;
+import fr.wayUp.cleanArchitecture_demo.domain.repository.MedicalTestRepository;
 import fr.wayUp.cleanArchitecture_demo.domain.repository.PrescriptionDetailRepository;
+import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.MedicalTestEntity;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.entity.PrescriptionDetailEntity;
+import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.MedicalTestMapper;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.PrescriptionDetailMapper;
+import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jpa.MedicalTestJpaRepository;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.repository.jpa.PrescriptionDetailJpaRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;

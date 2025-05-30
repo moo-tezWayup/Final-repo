@@ -4,6 +4,7 @@ import fr.wayUp.cleanArchitecture_demo.application.usecase.appointment.DeleteApp
 import fr.wayUp.cleanArchitecture_demo.application.usecase.appointment.FindUnavailableSchedulesUseCase;
 import fr.wayUp.cleanArchitecture_demo.application.usecase.appointment.GetListAppointmentUseCase;
 import fr.wayUp.cleanArchitecture_demo.application.usecase.appointment.SaveAppointmentUseCase;
+import fr.wayUp.cleanArchitecture_demo.application.usecase.clinic.GetListClinicsUseCase;
 import fr.wayUp.cleanArchitecture_demo.domain.model.Appointment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

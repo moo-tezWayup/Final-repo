@@ -1,5 +1,6 @@
 package fr.wayUp.cleanArchitecture_demo.web.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 

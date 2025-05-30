@@ -1,6 +1,7 @@
 package fr.wayUp.cleanArchitecture_demo.domain.model;
 
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 @Builder

@@ -3,6 +3,8 @@ package fr.wayUp.cleanArchitecture_demo.web.controller;
 import fr.wayUp.cleanArchitecture_demo.application.service.ClinicService;
 import fr.wayUp.cleanArchitecture_demo.application.service.FileUploadService;
 import fr.wayUp.cleanArchitecture_demo.domain.model.Clinic;
+import fr.wayUp.cleanArchitecture_demo.domain.model.Clinic;
+import fr.wayUp.cleanArchitecture_demo.domain.model.Staff;
 import fr.wayUp.cleanArchitecture_demo.infrastructure.persistence.mapper.ClinicMapper;
 import fr.wayUp.cleanArchitecture_demo.web.DTO.ClinicDTO;
 import jakarta.transaction.Transactional;
@@ -47,41 +49,33 @@ public class ClinicController {
         return ResponseEntity.ok(clinicWithFullUrl);
     }
 
+
     @PostMapping(value = "/addClinic", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
-    public ResponseEntity<?> createClinic(
-            @RequestParam(value = "file", required = false) MultipartFile file,
-            @RequestParam("name") String name,
-            @RequestParam("email") String email,
-            @RequestParam("phone") String phone,
-            @RequestParam("address") String address) {
+    public ResponseEntity<?> createClinc(
+            @RequestParam(value = "file",required = false) MultipartFile file,
+            @Valid @ModelAttribute ClinicDTO clinicDTO) {
 
         try {
             if (file != null && !file.isEmpty()) {
                 String contentType = file.getContentType();
-                if (!"image/jpeg".equals(contentType) && !"image/png".equals(contentType)) {
+                if (!"image/jpeg".equals(contentType) && !"image/png".equals(contentType))
                     return ResponseEntity.badRequest().body("Only JPEG or PNG images are allowed");
-                }
+
             }
 
-            // Construire manuellement DTO
-            ClinicDTO clinicDTO = new ClinicDTO();
-            clinicDTO.setName(name.trim());
-            clinicDTO.setEmail(email.trim());
-            clinicDTO.setPhone(phone.trim());
-            clinicDTO.setAddress(address.trim());
-
-            Clinic savedClinic = clinicService.saveClinic(ClinicMapper.toDomain(clinicDTO));
+            Clinic savedClinc = clinicService.saveClinic(ClinicMapper.toDomain(clinicDTO));
 
             if (file != null && !file.isEmpty()) {
-                String fileName = fileUploadService.saveImage(file, savedClinic.getId(), "clinics");
-                savedClinic.setImageDir(fileName);
-                savedClinic = clinicService.saveClinic(savedClinic);
+                String fileName = fileUploadService.saveImage(file, savedClinc.getId(), "clinics");
+                savedClinc.setImageDir(fileName);
+               savedClinc = clinicService.saveClinic(savedClinc);
             }
 
-            return ResponseEntity.ok(savedClinic);
+            return ResponseEntity.ok(savedClinc);
 
         } catch (IOException e) {
+
             return ResponseEntity.internalServerError()
                     .body("Error processing file: " + e.getMessage());
         } catch (Exception e) {
@@ -89,7 +83,6 @@ public class ClinicController {
                     .body("Error creating clinic : " + e.getMessage());
         }
     }
-
     @PatchMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Transactional
     public ResponseEntity<?> patchClinic(

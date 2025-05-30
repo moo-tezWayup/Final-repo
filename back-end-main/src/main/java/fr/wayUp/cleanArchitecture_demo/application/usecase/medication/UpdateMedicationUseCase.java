@@ -5,6 +5,7 @@ import fr.wayUp.cleanArchitecture_demo.domain.repository.MedicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class UpdateMedicationUseCase {
