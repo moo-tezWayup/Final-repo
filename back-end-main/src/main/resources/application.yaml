@@ -1,26 +1,40 @@
-
 spring:
-    application:
-        name: cleanArchitecture-demo
-    datasource:
-        url: jdbc:postgresql://localhost:5432/postgres
-        username: postgres
-        password: rahma123
-        driver-class-name: org.postgresql.Driver
+  application:
+    name: cleanArchitecture-demo
 
-    jpa:
-        database-platform: org.hibernate.dialect.PostgreSQLDialect
-        hibernate:
-            ddl-auto: update
-        show-sql: true
-    servlet:
-        multipart:
-            max-file-size: 2MB
-            max-request-size: 2MB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: rahma123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
 
 server:
-    port : 8080
-file:
-    upload-dir: uploads
-    server-url: http://localhost:8080
+  port: 8080
 
+file:
+  upload-dir: uploads
+  server-url: http://localhost:8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true

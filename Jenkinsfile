@@ -12,6 +12,7 @@ pipeline {
   }
 
   stages {
+
     stage('Git Version Check') {
       steps {
         sh '/usr/bin/git --version'
@@ -76,7 +77,19 @@ pipeline {
         dir('Final-repo/front-end') {
           withSonarQubeEnv('sonar-clinic') {
             withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
-              sh 'sonar-scanner -Dsonar.projectKey=clinic-frontend -Dsonar.login=$SONAR_TOKEN'
+              sh '''
+                docker run --rm \
+                  -e SONAR_TOKEN=$SONAR_TOKEN \
+                  -e SONAR_HOST_URL=$SONAR_HOST_URL \
+                  -v $(pwd):/usr/src \
+                  sonarsource/sonar-scanner-cli \
+                  -Dsonar.projectKey=clinic-frontend \
+                  -Dsonar.sources=src \
+                  -Dsonar.exclusions=**/*.spec.ts \
+                  -Dsonar.projectName=clinic-frontend \
+                  -Dsonar.projectVersion=1.0 \
+                  -Dsonar.login=$SONAR_TOKEN
+              '''
             }
           }
         }

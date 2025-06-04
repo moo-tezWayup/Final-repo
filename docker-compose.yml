@@ -3,9 +3,9 @@ version: '3.8'
 services:
   # Backend Spring Boot
   backend:
-    build: ./back-end-main               # Chemin vers le Dockerfile du backend
+    build: ./back-end-main
     ports:
-      - "8080:8080"                      # Exposer le port 8080 pour le backend
+      - "8080:8080"
     depends_on:
       - db
       - keycloak
@@ -14,6 +14,8 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: rahma123
       KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8180
+    networks:
+      - clinic-management
 
   # Frontend Angular
   frontend:
@@ -28,6 +30,8 @@ services:
     depends_on:
       - backend
       - keycloak
+    networks:
+      - clinic-management
 
   # Base de données PostgreSQL
   db:
@@ -39,9 +43,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"                # Exposer le port 5432 pour la base de données
+      - "5432:5432"
+    networks:
+      - clinic-management
 
-  # Keycloak (gestion de l'authentification)
+  # Keycloak
   keycloak:
     image: quay.io/keycloak/keycloak:22.0
     command: start-dev
@@ -55,10 +61,13 @@ services:
       KC_DB_USERNAME: postgres
       KC_DB_PASSWORD: rahma123
     ports:
-      - "8180:8080"                # Exposer le port 8180 pour Keycloak
+      - "8180:8080"
     depends_on:
       - db
+    networks:
+      - clinic-management
 
+  # Jenkins
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
@@ -70,6 +79,7 @@ services:
     networks:
       - clinic-management
 
+  # SonarQube
   sonarqube:
     image: sonarqube:latest
     container_name: sonarqube
@@ -83,11 +93,36 @@ services:
     networks:
       - clinic-management
 
+  # Prometheus
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - clinic-management
+
+  # Grafana
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - clinic-management
+
 volumes:
-  postgres_data: 
+  postgres_data:
   jenkins_home:
   sonarqube_data:
   sonarqube_extensions:
+  grafana_data:
 
 networks:
   clinic-management:
