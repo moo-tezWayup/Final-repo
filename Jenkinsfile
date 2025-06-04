@@ -4,6 +4,7 @@ pipeline {
   tools {
     jdk 'jdk-21'
     maven 'Maven 3.9.9'
+    nodejs 'NodeJS 20' // Assure-toi que "NodeJS 20" est bien défini dans Jenkins (Global Tools)
   }
 
   environment {
@@ -19,7 +20,7 @@ pipeline {
 
     stage('Clone Repository') {
       steps {
-        sh 'rm -rf Final-repo' // Clean any existing repo
+        sh 'rm -rf Final-repo' // Nettoyer
         sh '/usr/bin/git clone https://github.com/moo-tezWayup/Final-repo.git'
       }
     }
@@ -32,20 +33,58 @@ pipeline {
       }
     }
 
+    // ------------------ BACKEND ------------------
     stage('Build Backend') {
       steps {
         dir('Final-repo/back-end-main') {
-           sh 'mvn clean install -Dspring.profiles.active=test -DskipTests'
+          sh 'mvn clean install -Dspring.profiles.active=test -DskipTests'
         }
       }
     }
 
-    stage('SonarQube Analysis') {
+    stage('SonarQube Backend') {
       steps {
         dir('Final-repo/back-end-main') {
           withSonarQubeEnv('sonar-clinic') {
             withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
               sh 'mvn sonar:sonar -Dsonar.projectKey=clinic-backend -Dsonar.login=$SONAR_TOKEN'
+            }
+          }
+        }
+      }
+    }
+
+    // ------------------ FRONTEND ------------------
+    stage('Install Frontend Dependencies') {
+      steps {
+        dir('Final-repo/front-end') {
+          sh 'npm install'
+        }
+      }
+    }
+
+    stage('Test Frontend') {
+      steps {
+        dir('Final-repo/front-end') {
+          sh 'npm run test -- --watch=false --browsers=ChromeHeadless'
+        }
+      }
+    }
+
+    stage('Build Frontend') {
+      steps {
+        dir('Final-repo/front-end') {
+          sh 'npm run build'
+        }
+      }
+    }
+
+    stage('SonarQube Frontend') {
+      steps {
+        dir('Final-repo/front-end') {
+          withSonarQubeEnv('sonar-clinic') {
+            withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+              sh 'sonar-scanner -Dsonar.projectKey=clinic-frontend -Dsonar.login=$SONAR_TOKEN'
             }
           }
         }

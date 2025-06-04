@@ -168,8 +168,14 @@ public FindStaffBySpecialtyUseCase findStaffByGradeUseCase(StaffRepository staff
                                        GetListClinicsUseCase getListClinicsUseCase,
                                        GetByIdClinicsUseCase getByIdClinicsUseCase,
                                        UpdateClinicsUseCase updateClinicsUseCase,
-                                        DeleteClinicsUseCase deleteClinicsUseCase) {
-        return new ClinicService(saveClinicUseCase, getListClinicsUseCase,getByIdClinicsUseCase,updateClinicsUseCase,deleteClinicsUseCase);
+                                       DeleteClinicsUseCase deleteClinicsUseCase,
+                                       GetServicesByClinicUseCase getServicesByClinicUseCase) {
+        return new ClinicService(saveClinicUseCase,
+                getListClinicsUseCase,
+                getByIdClinicsUseCase,
+                updateClinicsUseCase,
+                deleteClinicsUseCase,
+                getServicesByClinicUseCase);
     }
 
 
@@ -194,6 +200,11 @@ public FindStaffBySpecialtyUseCase findStaffByGradeUseCase(StaffRepository staff
     public DeleteClinicsUseCase deleteClinicsUseCase(ClinicRepository clinicRepository) {
         return new DeleteClinicsUseCase(clinicRepository);
     }
+    @Bean
+    public GetServicesByClinicUseCase getServicesByClinicUseCase(ServiceRepository serviceRepository) {
+        return new GetServicesByClinicUseCase(serviceRepository);
+    }
+
     //ServiceStaff
     @Bean
     public ServiceStaffService serviceStaffService(GetStaffSchedulesForServiceUseCase getStaffSchedulesForService, GetListServicesStaffUseCase getListServicesStaffUseCase, SaveServiceStaffUseCase saveServiceStaffUseCase, DeleteServicesStaffUseCase deleteServicesStaffUseCase, GetStaffsByServiceIdUseCase getStaffsByServiceIdUseCase, FindStaffServiceIdUseCase findStaffServiceIdUseCase){
