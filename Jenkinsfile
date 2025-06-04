@@ -5,10 +5,12 @@ pipeline {
     jdk 'jdk-21'
     maven 'Maven 3.9.9'
     nodejs 'NodeJS 20' // Assure-toi que "NodeJS 20" est bien défini dans Jenkins (Global Tools)
+    sonarQubeScanner 'sonar'
   }
 
   environment {
     SONAR_TOKEN = credentials('sonar-token')
+    SONAR_HOST_URL = 'http://sonarqube:9000'
   }
 
   stages {
@@ -79,6 +81,7 @@ pipeline {
             withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
               sh '''
                 docker run --rm \
+                  ${tool 'sonar'}/bin/sonar-scanner \
                   -e SONAR_TOKEN=$SONAR_TOKEN \
                   -e SONAR_HOST_URL=$SONAR_HOST_URL \
                   -v $(pwd):/usr/src \
