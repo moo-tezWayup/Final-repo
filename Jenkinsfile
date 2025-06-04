@@ -5,7 +5,6 @@ pipeline {
     jdk 'jdk-21'
     maven 'Maven 3.9.9'
     nodejs 'NodeJS 20' // Assure-toi que "NodeJS 20" est bien défini dans Jenkins (Global Tools)
-    sonarQubeScanner 'sonar'
   }
 
   environment {
