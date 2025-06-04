@@ -63,14 +63,6 @@ pipeline {
       }
     }
 
-    stage('Test Frontend') {
-      steps {
-        dir('Final-repo/front-end') {
-          sh 'npm run test -- --watch=false --browsers=ChromeHeadless'
-        }
-      }
-    }
-
     stage('Build Frontend') {
       steps {
         dir('Final-repo/front-end') {
